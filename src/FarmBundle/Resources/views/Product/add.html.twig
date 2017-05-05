@@ -1,0 +1,25 @@
+{% extends 'FarmBundle::layout.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block main %}
+<!-- Jumbotron -->
+<div class="jumbotron">
+  <h1>Ajouter produit</h1>
+</div>
+
+<div class="">
+  {{ form(productForm, {attr: {'novalidate': 'novalidate'}} ) }}
+</div>
+
+{# {{ form_start(productForm) }}
+
+  {{ form_row(productForm.name) }}
+
+  {{ form_widget(productForm.description) }}
+  {{ form_label(productForm.description) }}
+  {{ form_errors(productForm.description) }}
+
+{{ form_end(productForm) }} #}
+
+{% endblock %}

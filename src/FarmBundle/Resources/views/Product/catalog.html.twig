@@ -1,0 +1,41 @@
+{% extends 'FarmBundle::layout.html.twig' %}
+
+{% block title %}FarmBundle:Product:add{% endblock %}
+
+{% block main %}
+<!-- Jumbotron -->
+<div class="jumbotron">
+  <h1>Liste des produits</h1>
+</div>
+
+<div class="form-group">
+    <form method="GET" action="" class="form-inline">
+        <select class="form-control" name="cat" id="">
+            <option disabled selected value>Catégories..</option>
+            {% for cat in categories %}
+                <option value="{{  cat.id }}" {{ (app.request.get('cat') == cat.id) ? 'selected' }}>{{ cat.label }}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-primary" type="submit">OK</button>
+    </form>
+</div>
+
+  <div class="row">
+
+  {% for product in products %}
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ asset('images/potatoes.png') }}" alt="">
+        <p>{{ product.category.label }}</p>
+        <p>{{ product.description }}</p>
+        <p><a class="btn btn-primary" href="{{ path('detail_product', {id: product.id}) }}" role="button">View details &raquo;</a></p>
+        <br>
+      </div>
+  {% else %}
+    <p>Aucun produit !</p>
+  {% endfor %}
+
+</div>
+<!-- Example row of columns -->
+
+{% endblock %}

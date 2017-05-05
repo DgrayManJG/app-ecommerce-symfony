@@ -1,0 +1,43 @@
+security:
+    firewalls: #
+        main:
+            pattern: ^/
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                 path: logout
+                 target: home
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 31000000
+                path:     /
+
+    providers:
+        main_provider:
+            entity:
+                class:              FarmBundle:User
+                property:           username
+
+    encoders:
+        FarmBundle\Entity\User:
+            algorithm: bcrypt
+            cost: 10
+            
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/produits/ajouter, roles: ROLE_FARMER }
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_FARMER
+        ROLE_FARMER:      ROLE_CUSTOMER
+
+# Grapillé depuis ces pages :
+# http://symfony.com/doc/2.8/reference/configuration/security.html
+# http://symfony.com/doc/2.8/security.html
+# http://symfony.com/doc/2.8/security/form_login_setup.html
+# http://symfony.com/doc/2.8/security/entity_provider.html
+# http://symfony.com/doc/2.8/security/remember_me.html
+# http://symfony.com/doc/2.8/security/csrf_in_login_form.html

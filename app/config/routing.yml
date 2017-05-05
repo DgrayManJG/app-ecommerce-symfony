@@ -1,0 +1,3 @@
+farm:
+    resource: "@FarmBundle/Resources/config/routing.yml"
+    prefix:   /

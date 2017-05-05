@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ asset('images/pikachu.png') }}">
+
+    <title>{% block title %}La ferme Taïeule!{% endblock %}</title>
+
+    {% block stylesheets %}
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/justified-nav.css') }}">
+    {% endblock %}
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('about') }}">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('faq') }}">Faq</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('catalog') }}">Catalogue</a>
+            </li>
+              {% if is_granted("ROLE_FARMER") %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('add_product') }}">Ajouter produit</a>
+                </li>
+              {% endif %}
+
+              {% if app.user is null %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('subscribe') }}">Inscription</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ path('login') }}">Connection</a>
+                </li>
+               {% else %}
+                 <li class="nav-item">
+                   <a class="nav-link" href="{{ path('logout') }}">Deconnexion</a>
+                 </li>
+              {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('cart') }}">Panier</a>
+            </li>
+          </ul>
+        </nav>
+        <h3><img src="{{ asset('images/pikachu.png') }}" alt=""></h3>
+          {% if app.user is null %}
+          {% else %}
+              <p>Bonjour {{ app.user.username }}</p>
+          {% endif %}
+      </div>
+
+      {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">
+          {{ flash_message }}
+        </div>
+      {% endfor %}
+
+      {% for flash_message in app.session.flashBag.get('danger') %}
+        <div class="alert alert-danger">
+          {{ flash_message }}
+        </div>
+      {% endfor %}
+
+      {% block main %}
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Home</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+      </div>
+
+      {% endblock %}
+
+
+    </div> <!-- /container -->
+
+    {% block javascripts %}
+    <script src="{{ asset('js/bootstrap.min.js') }}" charset="utf-8"></script>
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}" charset="utf-8"></script>
+    {% endblock %}
+
+  </body>
+</html>

@@ -1,0 +1,66 @@
+# page d'accueil
+home:
+    path:     /
+    defaults: { _controller: FarmBundle:Default:index }
+    methods: ['GET']
+
+# a propos
+about:
+    path:     /a-propos/
+    defaults: { _controller: FarmBundle:Default:about}
+    methods: ['GET']
+
+# faq
+faq:
+    path:     /faq/
+    defaults: { _controller: FarmBundle:Default:faq }
+    methods: ['GET']
+
+# contact
+contact:
+    path:     /contact/
+    defaults: { _controller: FarmBundle:Default:contact }
+    methods: ['GET', 'POST']
+
+# ajouter produit
+add_product:
+    path:     /produits/ajouter
+    defaults: { _controller: FarmBundle:Product:add }
+
+# ajouter produit
+catalog:
+    path:     /produits/catalog
+    defaults: { _controller: FarmBundle:Product:catalog }
+
+# details des produits
+detail_product:
+    path:     /produit/{id}
+    defaults: { _controller: FarmBundle:Product:detail }
+    requirements:
+        page: '\d+' #on force l'id à être un chiffre
+
+# gestion des images de produits
+add_image:
+     path:     /produits/{productId}/image/ajout/
+     defaults: { _controller: FarmBundle:Product:addImage }
+
+# gestion utilisateurs
+subscribe:
+     path: /inscription
+     defaults: { _controller: FarmBundle:User:subscribe }
+
+login:
+     path: /connection
+     defaults: { _controller: FarmBundle:User:login }
+
+logout:
+    path: /deconnexion
+
+# gestion panier
+cart:
+    path: /panier
+    defaults: { _controller: FarmBundle:Cart:show }
+
+add_cart:
+    path: /panier/ajout
+    defaults: { _controller: FarmBundle:Cart:add }
