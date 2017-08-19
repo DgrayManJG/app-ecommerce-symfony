@@ -1,4 +1,6 @@
 sf2-8
 =====
 
-A Symfony project created on May 2, 2017, 7:00 am.
+Example d'app Ecommerce en symfony faite à l'ENI.
+
+Intitulé : le ferme Taïeul
