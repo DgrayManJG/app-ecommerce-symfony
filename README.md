@@ -1,4 +1,4 @@
-sf2-8
+App E-commerce Symfony
 =====
 
 Example d'app Ecommerce en symfony faite à l'ENI.
